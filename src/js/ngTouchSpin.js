@@ -95,6 +95,19 @@ angular.module('jkuri.touchspin', [])
 			scope.checkValue = function () {
 				var val;
 
+				// retains value into boundary values
+				if (scope.min) {
+					if (parseFloat(scope.val) < parseFloat(scope.min)) {
+						scope.val = scope.min;
+					}
+				}
+
+				if (scope.max) {
+					if (parseFloat(scope.val) > parseFloat(scope.max)) {
+						scope.val = scope.max;
+					}
+				}
+
 				if (scope.val !== '' && !scope.val.match(/^-?(?:\d+|\d*\.\d+)$/i)) {
 					val = oldval !== '' ? parseFloat(oldval).toFixed(scope.decimals) : parseFloat(scope.min).toFixed(scope.decimals);
 					scope.val = val;
